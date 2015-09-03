@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<security:http auto-config="true">
+		<security:intercept-url pattern="/login" access="hasRole('ROLE_ANONYMOUS')"/>
+		<security:intercept-url pattern="/loginFailed" access="hasRole('ROLE_ANONYMOUS')"/>
+		<security:intercept-url pattern="/loginout" access="hasRole('ROLE_ANONYMOUS')" />
+		<security:form-login login-page="/login" username-parameter="j_username" login-processing-url="/j_spring_security_check" password-parameter="j_password" authentication-failure-url="/loginFailed"/>
+		<security:logout logout-success-url="/" logout-url="/j_spring_security_logout" />
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service data-source-ref="dataSource"/>
+			<security:password-encoder hash="bcrypt"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/blog"/>
+		<property name="username" value="root"/>
+		<property name="password" value="123qwe"/>
+	</bean>
+</beans>

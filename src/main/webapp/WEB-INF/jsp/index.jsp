@@ -29,7 +29,6 @@
   </head>
 
   <body>
-
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -104,11 +103,8 @@
 		</c:if>
 		<c:if test="${nomorepages != true}">
 			<a href="<spring:url value="/?pageNumber=${pageNumberNext}"/>" role="button" class="btn btn-primary">Next</a>
-		</c:if>
-      	
-      	
+		</c:if>     	
       <hr>
-
       <footer>
         <p>&copy; NoobCoder 2015</p>
       </footer>

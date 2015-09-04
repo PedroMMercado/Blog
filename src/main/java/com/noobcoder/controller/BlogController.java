@@ -49,6 +49,7 @@ public class BlogController {
 	public String successPost(@PathVariable("blogname") String blogname, Model model){
 		List<Blog> blog = blogService.getAllUser(blogname);
 		model.addAttribute("blog", blog);
+		model.addAttribute("blogURL", blogname);
 		return "profile";
 	}
 	// Used to display particular post of user

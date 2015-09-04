@@ -1,5 +1,6 @@
 package com.noobcoder.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,14 @@ public class HomeController {
 	
 	// Displays the Last 6 most recent post
 	@RequestMapping(value="/",method = RequestMethod.GET)
-	public String index(Model model,@RequestParam(value = "pageNumber", required = false) Integer pageNumber){
+	public String index(Model model,@RequestParam(value = "pageNumber", required = false) Integer pageNumber, Principal principal){
+		// To display username if user is logged in
+		if(principal != null){
+			model.addAttribute("username", principal.getName());
+			model.addAttribute("blogname", blogService.getBlogName(principal.getName()));
+			System.out.println("principal not empty");
+		}
+		
 		// No parameter provided if null
 		if(pageNumber == null)
 			pageNumber = 0;

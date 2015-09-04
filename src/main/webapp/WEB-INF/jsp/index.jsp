@@ -32,23 +32,17 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand">NoobCoder Home Page</a>
+          <a class="navbar-brand">NoobCoder  <c:if test="${not empty username}">| Welcome ${username}</c:if> </a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-         
 		<sec:authorize access="hasRole('ROLE_USER')">  
 		  <c:url var="logoutUrl" value="j_spring_security_logout"/>    
           <form class="navbar-form navbar-right" action="${logoutUrl}" method="post">
           	<a href="<spring:url value="/blogpost"/>" role="button" class="btn btn-primary">Create Post</a>
+          	<a href="<spring:url value="/${blogname}"/>" role="button" class="btn btn-primary">My Profile</a>
   			<input type="submit" value="Log out" role="button" class="btn btn-primary" />
   			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
           </form>
+          
         </sec:authorize>
         <sec:authorize access="hasRole('ROLE_ANONYMOUS')">
          <form class="navbar-form navbar-right">
@@ -56,7 +50,6 @@
           	<a href="<spring:url value="/createUser"/>" role="button" class="btn btn-primary">Create Account</a> 
          </form>
         </sec:authorize>  
-        </div><!--/.navbar-collapse -->
       </div>
     </nav>
 

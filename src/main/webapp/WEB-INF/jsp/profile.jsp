@@ -1,18 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta name="description" content="">
-<meta name="author" content="">
 
 <title>Blog Template for Bootstrap</title>
-
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -23,33 +19,34 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 
-<body>
-
+<body>	
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">NoobCoder | ${blogURL}</a>
+        </div>
+      </div>
+    </nav>
+    <br>
+    <br>
 	<div class="container">
-
 		<div class="row">
-			<div class="col-md-8">
-				<h1>Main</h1>
-			</div>
-			<div class="col-md-4">
-				<h1>Sidebar</h1>
-			</div>
-			
-			
-<%-- 			<c:forEach items="${temp2}" var="temp2">
-	        		<div class="col-md-4">
-	        		<h2>${temp2.title }</h2>
-      				<p>${temp2.content }</p>
-	   				<p><a class="btn btn-default" href="<spring:url value="/${temp2.blogname}/${temp2.id}/${temp2.title}"/>" role="button">View Post &raquo;</a></p>
-	        	</div> --%>
-	        	
-	 <!--       blog.setBlogname(rs.getString("blogname"));
-				blog.setUsername(rs.getString("username"));
-				blog.setContent(rs.getString("content"));
-				blog.setTitle(rs.getString("title")); -->
-	        </c:forEach>
-		</div>
+		<c:set var="count" value= "0"/>
+			<c:forEach items="${blog}" var="blog">
+				<div class="col-md-8">			
+					<h1>${blog.title}</h1>
+					<h3>${blog.content }</h3> 
+				</div>
+				<c:if test="${count == 0}">
+					<div class="col-md-4">
+						<h1>Top 5 Recent Post</h1>
+					</div>
+				</c:if>
+				<c:set var="count" value="${count + 1}"/>
+			 </c:forEach>
+		</div>	
 	</div>
+	
 
 
 	<!-- Bootstrap core JavaScript

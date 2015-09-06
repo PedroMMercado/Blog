@@ -52,12 +52,55 @@ public class BlogDaoImpl implements BlogDao {
 	}
 
 	public void update(Blog blog) {
-		// TODO Auto-generated method stub
+		String query = "update blog set title = ?, content = ? where id = ? ";
+		Connection con = null;
+		PreparedStatement ps = null;
+		try{
+			con = dataSource.getConnection();
+			ps = con.prepareStatement(query);
+			ps.setString(1, blog.getTitle());
+			ps.setString(2, blog.getContent());
+			ps.setInt(3, blog.getId());
+			ps.executeUpdate();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				con.close();
+				ps.close();
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+			
+		}
 
 	}
 
+
 	public void delete(Blog blog) {
-		// TODO Auto-generated method stub
+		String query = "delete blog where id = ?";
+		Connection con = null;
+		PreparedStatement ps = null;
+		try{
+			con = dataSource.getConnection();
+			ps = con.prepareStatement(query);
+			ps.setInt(1, blog.getId());
+			ps.executeUpdate();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				con.close();
+				ps.close();
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public String getBlogName(String username) {

@@ -22,7 +22,6 @@ public class UserDaoImpl implements UserDao {
 		this.dataSource = dataSource;
 	}
 
-
 	public void createUser(User user) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String password = passwordEncoder.encode(user.getPassword());

@@ -29,9 +29,10 @@ public class BlogServiceImpl implements BlogService {
 	public List<Blog> getAllUser(String blogname) {
 		return blogDao.getAllUser(blogname);
 	}
-
+	
+	@Transactional
 	public void update(Blog blog) {
-		// TODO Auto-generated method stub
+		blogDao.update(blog);
 		
 	}
 	public String getBlogName(String username){
@@ -40,6 +41,11 @@ public class BlogServiceImpl implements BlogService {
 
 	public List<Blog> getByID(int id) {
 		return blogDao.getByID(id);
+	}
+	@Transactional
+	public void delete(Blog blog) {
+		blogDao.delete(blog);
+		
 	}
 
 }

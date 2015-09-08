@@ -117,7 +117,30 @@ public class UserDaoImpl implements UserDao {
 				e.printStackTrace();
 			}
 		}
-		
 	}
 
+	public void suspendOrEnable(String username, int enabled) {
+		String query = "update users set enabled = ? where username = ?";
+		Connection con = null;
+		PreparedStatement ps = null;
+		try{
+			con = dataSource.getConnection();
+			ps = con.prepareStatement(query);
+			ps.setInt(1, enabled);
+			ps.setString(2, username);
+			ps.executeUpdate();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				con.close();
+				ps.close();
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
 }

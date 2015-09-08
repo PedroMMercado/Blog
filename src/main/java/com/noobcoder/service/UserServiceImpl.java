@@ -30,38 +30,10 @@ public class UserServiceImpl implements UserService {
 		userDao.delete(user);
 		
 	}
+	@Transactional
+	public void suspendOrEnable(String username,int enabled) {
+		userDao.suspendOrEnable(username,enabled);
+		
+	}
 }
 
-/*
-@Override
-public List<Employee> getAll() {
-   String query = "select id, name, role from Employee";
-   List<Employee> empList = new ArrayList<Employee>();
-   Connection con = null;
-   PreparedStatement ps = null;
-   ResultSet rs = null;
-   try{
-       con = dataSource.getConnection();
-       ps = con.prepareStatement(query);
-       rs = ps.executeQuery();
-       while(rs.next()){
-           Employee emp = new Employee();
-           emp.setId(rs.getInt("id"));
-           emp.setName(rs.getString("name"));
-           emp.setRole(rs.getString("role"));
-           empList.add(emp);
-       }
-   }catch(SQLException e){
-       e.printStackTrace();
-   }finally{
-       try {
-           rs.close();
-           ps.close();
-           con.close();
-       } catch (SQLException e) {
-           e.printStackTrace();
-       }
-   }
-   return empList;
-}
-*/

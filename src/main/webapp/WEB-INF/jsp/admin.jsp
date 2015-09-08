@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +28,15 @@
 		      <tr>
 		        <td>${users.userName }</td>
 		        <td>${users.userDomain }</td>
-		        <td>${users.enabled }</td>
-		        <td><a href=""></a></td>
+		        <td>${users.enabled }</td>      
+		        <c:choose>
+				  <c:when test="${users.enabled == true}">
+				  	<td><a href="<spring:url value="/suspend/${users.userName}"/>">Suspend User</a></td>
+				  </c:when>
+				  <c:otherwise>
+				  	<td><a href="<spring:url value="/enable/${users.userName}"/>">Enable User</a></td>
+				  </c:otherwise>
+				</c:choose>
 		      </tr>
 		    </c:forEach>
 		    </tbody>

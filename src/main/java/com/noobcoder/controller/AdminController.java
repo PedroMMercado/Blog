@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.noobcoder.model.User;
 import com.noobcoder.service.UserService;
@@ -26,10 +25,14 @@ public class AdminController {
 		return "admin";
 	}
 	
-	@RequestMapping(value="/{suspend}/{user}",method=RequestMethod.GET)
-	public String admin(Model model, @PathVariable("suspend") String suspend, @RequestParam("user") String username){
-		// todo make a way to suspend user.
-		// update users set enabled = 1 where username = 'pedro'
+	@RequestMapping(value="/{enabledOrDisabled}/{user}",method=RequestMethod.GET)
+	public String admin(Model model,@PathVariable("user") String username,@PathVariable("enabledOrDisabled") String enabledOrDisabled){
+		if(enabledOrDisabled.equals("suspend"))
+			userService.suspendOrEnable(username, 0);
+		else
+			userService.suspendOrEnable(username, 1);
+		List<User> userList = userService.getAll();
+		model.addAttribute("users", userList);
 		return "admin";
 	}
 }

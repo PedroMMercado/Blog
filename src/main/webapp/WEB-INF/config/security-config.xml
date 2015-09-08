@@ -9,6 +9,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
 	<security:http auto-config="true">
+		<security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/login" access="hasRole('ROLE_ANONYMOUS')"/>
 		<security:intercept-url pattern="/loginFailed" access="hasRole('ROLE_ANONYMOUS')"/>
 		<security:intercept-url pattern="/loginout" access="hasRole('ROLE_ANONYMOUS')" />

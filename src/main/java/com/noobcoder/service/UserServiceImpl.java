@@ -23,10 +23,13 @@ public class UserServiceImpl implements UserService {
 		userDao.createUser(user);
 	}
 	public List<User> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.getAll();
 	}
-
+	@Transactional
+	public void delete(User user) {
+		userDao.delete(user);
+		
+	}
 }
 
 /*

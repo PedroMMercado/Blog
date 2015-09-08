@@ -7,4 +7,5 @@ import com.noobcoder.model.User;
 public interface UserService {
 	public void create(User user);
 	public List<User> getAll();
+	public void delete(User user);
 }

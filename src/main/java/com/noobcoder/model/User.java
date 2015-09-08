@@ -4,6 +4,15 @@ public class User {
 	private String userName;
 	private String password;
 	private String userDomain;
+	private Boolean enabled;
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
 
 	public String getUserName() {
 		return userName;

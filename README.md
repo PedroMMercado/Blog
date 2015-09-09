@@ -20,3 +20,4 @@ Features Implented -
   * Homepage dynamically displays 6 most recent post
   * Passwords encrypted
   * Able to retrieve data from the database and display to user
+  * Admin able to suspend/unsuspend user

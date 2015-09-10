@@ -23,4 +23,4 @@ Features Implented -
   * Admin able to suspend/unsuspend user
 
 ER Diagram
-https://drive.google.com/open?id=0BxLINZAUZGHaQmxwVFJoNG13RnM
+https://drive.google.com/file/d/0BxLINZAUZGHaQmxwVFJoNG13RnM/view?usp=sharing

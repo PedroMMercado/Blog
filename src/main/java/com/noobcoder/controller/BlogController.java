@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.noobcoder.model.Blog;
+import com.noobcoder.model.Comment;
 import com.noobcoder.service.BlogService;
+import com.noobcoder.service.CommentService;
 
 @Controller	
 @SessionAttributes("blog")
@@ -21,6 +23,9 @@ public class BlogController {
 	
 	@Autowired
 	private BlogService blogService;
+	
+	@Autowired
+	private CommentService commentService;
 	
 	// Get Blog data from user, persist into database
 	@RequestMapping(value="/blogpost",method = RequestMethod.POST)
@@ -58,6 +63,10 @@ public class BlogController {
 								@PathVariable("id") int id ,
 								@PathVariable("title") String title, Model model){
 		List<Blog> blog = blogService.getByID(id);
+		List<Comment> comment = commentService.getComments(id);
+		for(int i = 0; i < comment.size();i++){
+			System.out.println(comment.get(i));
+		}
 		model.addAttribute("blogID",blog);
 		return "post";
 	}

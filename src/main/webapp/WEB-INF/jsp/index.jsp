@@ -35,11 +35,11 @@
           <a class="navbar-brand">NoobCoder  <c:if test="${not empty username}">| Welcome ${username}</c:if> </a>
         </div>
 		<sec:authorize access="hasRole('ROLE_USER')">  
-		  <sec:authorize access="hasRole('ROLE_ADMIN')">
-        	<a href="<spring:url value="/admin"/>" role="button" class="btn btn-primary">Admin Panel</a>
-          </sec:authorize>
 		  <c:url var="logoutUrl" value="j_spring_security_logout"/>    
           <form class="navbar-form navbar-right" action="${logoutUrl}" method="post">
+	        <sec:authorize access="hasRole('ROLE_ADMIN')">
+	     	  	<a href="<spring:url value="/admin"/>" role="button" class="btn btn-primary">Admin Panel</a>
+	        </sec:authorize>
           	<a href="<spring:url value="/blogpost"/>" role="button" class="btn btn-primary">Create Post</a>
           	<a href="<spring:url value="/${blogname}"/>" role="button" class="btn btn-primary">My Profile</a>
   			<input type="submit" value="Log out" role="button" class="btn btn-primary" />

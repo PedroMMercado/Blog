@@ -21,3 +21,6 @@ Features Implented -
   * Passwords encrypted
   * Able to retrieve data from the database and display to user
   * Admin able to suspend/unsuspend user
+
+ER Diagram
+https://drive.google.com/open?id=0BxLINZAUZGHaQmxwVFJoNG13RnM

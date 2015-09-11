@@ -17,5 +17,9 @@ public class CommentServiceImpl implements CommentService{
 	public List<Comment> getComments(int id) {
 		return commentDao.getComments(id);
 	}
+	
+	public void create(Comment comment){
+		commentDao.create(comment);
+	}
 
 }

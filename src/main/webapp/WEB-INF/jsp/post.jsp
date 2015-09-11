@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +21,15 @@
 						<p>${blogID.content}</p>
 					</c:forEach>
 			</c:if>
+			<sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
+				<form:form commandName="comment">
+					<div class="form-group">
+						<label for="comment">Enter User Name</label>
+						<form:input path="comment" class="form-control" placeholder="User Name" />
+						<button type="submit" class="btn btn-default">Submit</button>
+					</div>
+				</form:form>
+			</sec:authorize>
 		</div>
 	</div>
 </body>

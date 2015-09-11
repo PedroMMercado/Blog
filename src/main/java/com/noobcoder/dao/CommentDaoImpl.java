@@ -53,5 +53,32 @@ public class CommentDaoImpl implements CommentDao {
 		}
 		return list;
 	}
+	
+	public void create(Comment comment) {
+		String query = "insert into comments (comment,username,date,id) values (?,?,?,?)";
+		Connection con = null;
+		PreparedStatement ps = null;
+		try{
+			con = dataSource.getConnection();
+			ps = con.prepareStatement(query);
+			ps.setString(1, comment.getComment());
+			ps.setString(2, comment.getUsername());
+			ps.setDate(3, new java.sql.Date(comment.getDate().getTime()));
+			ps.setInt(4, comment.getId());
+			ps.executeUpdate();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				con.close();
+				ps.close();
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
 
 }

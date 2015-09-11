@@ -1,6 +1,7 @@
 package com.noobcoder.controller;
 
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,17 +58,26 @@ public class BlogController {
 		model.addAttribute("blogURL", blogname);
 		return "profile";
 	}
+	
 	// Used to display particular post of user
 	@RequestMapping(value="/{blogname}/{id}/{title}", method=RequestMethod.GET)
 	public String homePageLinks(@PathVariable("blogname") String blogname,
 								@PathVariable("id") int id ,
-								@PathVariable("title") String title, Model model){
+								@PathVariable("title") String title, 
+								Model model){
 		List<Blog> blog = blogService.getByID(id);
-		List<Comment> comment = commentService.getComments(id);
-		for(int i = 0; i < comment.size();i++){
-			System.out.println(comment.get(i));
-		}
+		List<Comment> comments = commentService.getComments(id);
+		model.addAttribute("comment", new Comment());
 		model.addAttribute("blogID",blog);
+		return "post";
+	}
+	
+	@RequestMapping(value="/{blogname}/{id}/{title}", method= RequestMethod.POST)
+	public String homePageLinks(@ModelAttribute("comment")Comment comment, Principal principal,@PathVariable("id") int id){
+		comment.setUsername(principal.getName());
+		comment.setDate(new Date());
+		comment.setId(id);
+		commentService.create(comment);
 		return "post";
 	}
 }

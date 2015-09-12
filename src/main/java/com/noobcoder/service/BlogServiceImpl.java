@@ -39,7 +39,7 @@ public class BlogServiceImpl implements BlogService {
 		return blogDao.getBlogName(username);
 	}
 
-	public List<Blog> getByID(int id) {
+	public Blog getByID(int id) {
 		return blogDao.getByID(id);
 	}
 	@Transactional

@@ -65,19 +65,25 @@ public class BlogController {
 								@PathVariable("id") int id ,
 								@PathVariable("title") String title, 
 								Model model){
-		List<Blog> blog = blogService.getByID(id);
+		Blog blog = blogService.getByID(id);
+		System.out.println(blog.getUsername());
 		List<Comment> comments = commentService.getComments(id);
+		model.addAttribute("comments", comments);
 		model.addAttribute("comment", new Comment());
 		model.addAttribute("blogID",blog);
+		System.out.println("inside GET");
 		return "post";
 	}
 	
 	@RequestMapping(value="/{blogname}/{id}/{title}", method= RequestMethod.POST)
-	public String homePageLinks(@ModelAttribute("comment")Comment comment, Principal principal,@PathVariable("id") int id){
+	public String homePageLinks(@ModelAttribute("comment")Comment comment, Principal principal,
+								@PathVariable("id") int id,
+								@PathVariable("blogname") String name,
+								@PathVariable("title") String title){
 		comment.setUsername(principal.getName());
 		comment.setDate(new Date());
 		comment.setId(id);
 		commentService.create(comment);
-		return "post";
+		return "redirect:/" + name + "/" + id + "/" + title;
 	}
 }

@@ -200,21 +200,21 @@ public class BlogDaoImpl implements BlogDao {
 		return blogList;
 	}
 
-	public List<Blog> getByID(int id) {
-		String query = "select content, title from blog where id =" + id;
-		List<Blog> blogList = new ArrayList<Blog>();
+	public Blog getByID(int id) {
+		String query = "select content, title, username from blog where id = ?";
+		Blog blog = new Blog();
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try{
 			con = dataSource.getConnection();
 			ps = con.prepareStatement(query);
+			ps.setInt(1, id);
 			rs = ps.executeQuery();
 			while(rs.next()){
-				Blog blog = new Blog();
 				blog.setContent(rs.getString("content"));
 				blog.setTitle(rs.getString("title"));
-				blogList.add(blog);
+				blog.setUsername(rs.getString("username"));
 			}
 		}
 		catch(SQLException e){
@@ -230,7 +230,7 @@ public class BlogDaoImpl implements BlogDao {
 				e.printStackTrace();
 			}
 		}
-		return blogList;
+		return blog;
 	}
 }
 

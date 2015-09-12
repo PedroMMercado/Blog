@@ -16,21 +16,31 @@
 	<div class="container">
 		<div class="well well-lg">
 			<c:if test="${not empty blogID}">
-					<c:forEach var="blogID" items="${blogID}">
-						<h1>${blogID.title}</h1>
-						<p>${blogID.content}</p>
-					</c:forEach>
+				<h1>${blogID.title}</h1>
+				<p>${blogID.content}</p>
+				<p>Written by: ${blogID.username }</p>
 			</c:if>
-			<sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
-				<form:form commandName="comment">
-					<div class="form-group">
-						<label for="comment">Enter User Name</label>
-						<form:input path="comment" class="form-control" placeholder="User Name" />
-						<button type="submit" class="btn btn-default">Submit</button>
-					</div>
-				</form:form>
-			</sec:authorize>
 		</div>
+		<c:forEach var="comments" items="${comments}">
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6 well well-sm">
+					<h3>${comments.comment}</h3>
+					<p>Written By ${comments.username}</p>	
+				</div>
+				<div class="col-md-3"></div>
+			</div>	
+		</c:forEach>
+		<sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
+			<form:form commandName="comment">
+				<div class="form-group">
+					<label for="comment">Enter Comment</label>
+					<form:input path="comment" class="form-control" placeholder="Enter Comment Here" />
+					<button type="submit" class="btn btn-default">Submit</button>
+				</div>
+			</form:form>
+		</sec:authorize>
+		
 	</div>
 </body>
 </html>

@@ -64,8 +64,11 @@ public class BlogController {
 	public String homePageLinks(@PathVariable("blogname") String blogname,
 								@PathVariable("id") int id ,
 								@PathVariable("title") String title, 
-								Model model){
+								Model model,
+								Principal principal){
 		Blog blog = blogService.getByID(id);
+		if(principal.getName().equals(blog.getUsername()))
+			model.addAttribute("edit",true);
 		System.out.println(blog.getUsername());
 		List<Comment> comments = commentService.getComments(id);
 		model.addAttribute("comments", comments);

@@ -72,10 +72,8 @@ public class BlogDaoImpl implements BlogDao {
 			}
 			catch(SQLException e){
 				e.printStackTrace();
-			}
-			
+			}	
 		}
-
 	}
 
 
@@ -181,6 +179,7 @@ public class BlogDaoImpl implements BlogDao {
 				blog.setUsername(rs.getString("username"));
 				blog.setContent(rs.getString("content"));
 				blog.setTitle(rs.getString("title"));
+				blog.setId(rs.getInt("id"));
 				blogList.add(blog);
 			}
 		}

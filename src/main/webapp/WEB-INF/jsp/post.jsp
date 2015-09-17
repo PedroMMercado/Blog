@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,24 @@
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#hide").hide();
+	$(".editBlog").hide();
+    $("#edit").click(function(){
+        $(".editBlog").show();
+        $("#edit").hide();
+        $("#hide").show();
+    });
+    
+    $("#hide").click(function(){
+    	$(".editBlog").hide();
+    	$("#edit").show();
+    	$("#hide").hide();
+    });
+});
+</script>
 </head>
 <body>
 	<div class="container">
@@ -19,6 +38,21 @@
 				<h1>${blogID.title}</h1>
 				<p>${blogID.content}</p>
 				<p>Written by: ${blogID.username }</p>
+				<c:if test="${edit}">
+					<form:form commandName="editedBlog" class="editBlog">
+						<div class="form-group">
+							<label for="title">Update Title</label>
+							<form:input path="title" class="form-control" placeholder="title" />
+						</div>
+						<div class="form-group">
+							<label for="content">Update Content</label>
+							<form:textarea path="content" class="form-control" placeholder="Content" />
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+					</form:form>
+					<button id="edit"class="btn btn-default">Edit</button>
+					<button id="hide" class="btn btn-default">Hide</button>
+				</c:if>
 			</c:if>
 		</div>
 		<c:forEach var="comments" items="${comments}">

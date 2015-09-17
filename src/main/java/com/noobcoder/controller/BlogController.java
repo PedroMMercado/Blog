@@ -68,10 +68,10 @@ public class BlogController {
 								Principal principal){
 		Blog blog = blogService.getByID(id);
 		if(principal.getName().equals(blog.getUsername()))
-			model.addAttribute("edit",true);
-		System.out.println(blog.getUsername());
+			model.addAttribute("edit", true);
 		List<Comment> comments = commentService.getComments(id);
 		model.addAttribute("comments", comments);
+		model.addAttribute("editedBlog", new Blog());
 		model.addAttribute("comment", new Comment());
 		model.addAttribute("blogID",blog);
 		System.out.println("inside GET");
@@ -79,14 +79,23 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value="/{blogname}/{id}/{title}", method= RequestMethod.POST)
-	public String homePageLinks(@ModelAttribute("comment")Comment comment, Principal principal,
+	public String homePageLinks(@ModelAttribute("comment")Comment comment,
+								@ModelAttribute("editedBlog") Blog blog,
+								Principal principal,
 								@PathVariable("id") int id,
 								@PathVariable("blogname") String name,
 								@PathVariable("title") String title){
+		//Comments
 		comment.setUsername(principal.getName());
 		comment.setDate(new Date());
 		comment.setId(id);
 		commentService.create(comment);
+		
+		//Blog edit
+		blog.setBlogname(name);
+		blog.setId(id);
+		blogService.update(blog);
+		
 		return "redirect:/" + name + "/" + id + "/" + title;
 	}
 }

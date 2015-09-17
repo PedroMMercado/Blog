@@ -34,10 +34,6 @@
 					  <a href="<spring:url value="/${blogURL}/${blog.id}/${blog.title}"/>" class="list-group-item">
 					    <h4 class="list-group-item-heading">${blog.title}</h4>
 					    <p class="list-group-item-text">${blog.content }</p>
-					    <c:if test="${edit}">
-					    <!-- Finish implementing the edit feature -->
-					    	<a href="<spring:url value="/admin"/>" role="button" class="btn btn-primary">Edit</a>
-					    </c:if>
 					  </a>
 					</div>
 				</div>

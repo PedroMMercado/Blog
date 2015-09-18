@@ -13,6 +13,7 @@ Frontend Technologies:
   * Bootstrap
   * Jsp
   * Jstl
+  * JQuery
   
 Features Implented -
   * Account Creation

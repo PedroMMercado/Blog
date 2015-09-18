@@ -67,14 +67,13 @@ public class BlogController {
 								Model model,
 								Principal principal){
 		Blog blog = blogService.getByID(id);
-		if(principal.getName().equals(blog.getUsername()))
+		if(principal != null && principal.getName().equals(blog.getUsername()))
 			model.addAttribute("edit", true);
 		List<Comment> comments = commentService.getComments(id);
 		model.addAttribute("comments", comments);
 		model.addAttribute("editedBlog", new Blog());
 		model.addAttribute("comment", new Comment());
 		model.addAttribute("blogID",blog);
-		System.out.println("inside GET");
 		return "post";
 	}
 	

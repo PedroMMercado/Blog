@@ -26,29 +26,15 @@
     <br>
     <br>
 	<div class="container">
-		<div class="row">
-		<c:set var="count" value= "0"/>
-			<c:forEach items="${blog}" var="blog">		
-				<div class="col-md-8">						
-					<div class="list-group">
-					  <a href="<spring:url value="/${blogURL}/${blog.id}/${blog.title}"/>" class="list-group-item">
-					    <h4 class="list-group-item-heading">${blog.title}</h4>
-					    <p class="list-group-item-text">${blog.content }</p>
-					  </a>
-					</div>
-				</div>
-				<c:if test="${count == 0}">
-					<div class="col-md-4">
-						<h1>Top 5 Recent Post</h1>
-					</div>
-				</c:if>
-				<c:set var="count" value="${count + 1}"/>
-			 </c:forEach>
-		</div>	
+		<div class="list-group">		
+			<c:forEach items="${blog}" var="blog">				
+			  <a href="<spring:url value="/${blogURL}/${blog.id}/${blog.title}"/>" class="list-group-item">
+			    <h4 class="list-group-item-heading">${blog.title}</h4>
+			    <p class="list-group-item-text">${blog.content }</p>
+			  </a>
+			</c:forEach>
+		</div>
 	</div>
-	
-
-
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->

@@ -13,6 +13,16 @@
  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<br>
+	<br>
+	<br>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">Admin Panel</a>
+        </div>
+      </div>
+    </nav>
 	<div class="container">
 		<table class="table">
 		    <thead>

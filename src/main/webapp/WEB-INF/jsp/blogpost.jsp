@@ -13,8 +13,17 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 <body>
+	<br>
+	<br>
+	<br>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">Blog Post | <sec:authentication property="principal.username" /></a>
+        </div>
+      </div>
+    </nav>
 	<div class="container">
-		You are now logged in as: <sec:authentication property="principal.username" />
 		<form:form commandName="blog">
 			<div class="form-group">
 				<label for="title">Enter Title</label>

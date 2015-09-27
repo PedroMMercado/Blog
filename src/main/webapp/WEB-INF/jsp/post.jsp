@@ -32,6 +32,16 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+	<br>
+	<br>
+	<br>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">Blog Post | ${blogID.title }</a>
+        </div>
+      </div>
+    </nav>
 	<div class="container">
 		<div class="well well-lg">
 			<c:if test="${not empty blogID}">

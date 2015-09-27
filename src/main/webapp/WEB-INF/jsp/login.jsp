@@ -10,7 +10,16 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 <body onload='document.f.j_username.focus();'>
-
+	<br>
+	<br>
+	<br>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">NoobCoder | Login</a>
+        </div>
+      </div>
+    </nav>
 	<div class="container">
 		<h1>Please Log In</h1>
 		<c:if test="${not empty error }">

@@ -1,8 +1,11 @@
 package com.noobcoder.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,8 +26,13 @@ public class UserController {
 	
 	// Get data to create a user and saves into database
 	@RequestMapping(value="createUser",method = RequestMethod.POST)
-	public String createAccount(@ModelAttribute("user") User user){
-		userService.create(user);
+	public String createAccount(@Valid@ModelAttribute("user") User user, BindingResult result, Model model){
+		if(result.hasErrors()){
+			model.addAttribute("error", 1);
+			return "accountCreation";
+		}
+		else
+			userService.create(user);
 		return"redirect:accountSuccess?username=" + user.getUserName();
 	}
 	

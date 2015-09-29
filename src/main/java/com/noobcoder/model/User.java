@@ -1,8 +1,15 @@
 package com.noobcoder.model;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class User {
+	@Size(min = 6 , max = 12)
+	@Pattern(regexp="^[a-zA-Z0-9]")
 	private String userName;
+	@Pattern(regexp="^[a-zA-Z0-9]")
 	private String password;
+	@Pattern(regexp="^[a-zA-Z0-9]")
 	private String userDomain;
 	private Boolean enabled;
 

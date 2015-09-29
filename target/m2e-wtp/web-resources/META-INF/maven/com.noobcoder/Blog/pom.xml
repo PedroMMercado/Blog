@@ -55,6 +55,11 @@
     	<artifactId>spring-security-taglibs</artifactId>
     	<version>4.0.2.RELEASE</version>
     </dependency>
+    <dependency>
+    	<groupId>org.hibernate</groupId>
+    	<artifactId>hibernate-validator</artifactId>
+    	<version>5.2.1.Final</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>Blog</finalName>
